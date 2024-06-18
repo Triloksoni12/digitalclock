@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React DIgital Clock</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .container {
+            width: 300px;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        #regularDiv {
+            background-color: rgb(200, 252, 217);
+        }
+
+        #reactDiv {
+            background-color: rgb(241, 216, 178);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>React Digital Clock</h1>
+
+    <div class="container" id="regularDiv">
+        this should change
+    </div>
+
+    <div class="container" id="reactDiv">
+        this should change
+    </div>
+
+    <script type="text/babel">
+        const rootNode = ReactDOM.createRoot(document.getElementById("reactDiv"));
+
+        function renderThis() {
+            document.getElementById("regularDiv").innerHTML =
+                `<input/><p>${new Date()}</p>`;
+
+            const myElem = (
+                <div>
+                    <input />
+                    <p>{(new Date()).toString()}</p>
+                </div>
+            );
+            rootNode.render(myElem);
+        }
+
+        setInterval(renderThis, 1000);
+    </script>
+</body>
+
+</html>
